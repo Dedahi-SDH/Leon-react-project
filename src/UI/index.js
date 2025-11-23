@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import Modal from "./Modal";
 import "./LoenForm.css";
+import MyComponent from "./inputNumber";
 
 export default function UiDesign() {
   const [inpName, setInputName] = useState("");
@@ -34,7 +35,23 @@ export default function UiDesign() {
       isNumber = true;
     }
   }
-
+  function handleChangeNumber(e) {
+    setInputNumber(e.target.value);
+  }
+  function handleChangeName(e) {
+    setInputName(e.target.value);
+  }
+  function handleChangeAge(e) {
+    setInputAge(e.target.value);
+  }
+  function handleChangeCheck(e) {
+    setInputCheck(e.target.value);
+  }
+  const type = {
+    text: "text",
+    number: "number",
+    check: "checkbox",
+  };
   return (
     <div
       className="flex"
@@ -48,34 +65,29 @@ export default function UiDesign() {
       >
         <h1>Requesting Loen</h1>
         <hr></hr>
-        <label>Enter Your Name here:</label>
-        <input
-          type="text"
-          required
+        <MyComponent
+          input={"Your Name: "}
           value={inpName}
-          onChange={(event) => setInputName(event.target.value)}
+          handleChange={handleChangeName}
+          type={type.text}
         />
-        <label>Enter Your Number here:</label>
-        <input
-          type="Number"
-          required
+        <MyComponent
+          input={"Your Number: "}
           value={inpNumber}
-          onChange={(event) => setInputNumber(event.target.value)}
+          handleChange={handleChangeNumber}
+          type={type.number}
         />
-        <label>Enter Your Age here:</label>
-
-        <input
-          type="Number"
-          required
+        <MyComponent
+          input={"Your Age: "}
           value={inpAge}
-          onChange={(event) => setInputAge(event.target.value)}
+          handleChange={handleChangeAge}
+          type={type.number}
         />
-        <label>Are you an employee?</label>
-        <input
-          type="checkbox"
-          required
-          checked={inpCheck}
-          onChange={(event) => setInputCheck(event.target.checked)}
+        <MyComponent
+          input={"Are you an employee?"}
+          value={inpCheck}
+          handleChange={handleChangeCheck}
+          type={type.check}
         />
         <label>Salary</label>
         <select
